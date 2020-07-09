@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "user";
+
+service User{
+    rpc QueryUserByName (QueryUserByNameReq) returns (QueryUserByNameRsp); // 获取用户名字
+}
+
+message Error{
+    int32 code = 1;
+    string message = 2;
+}
+
+// TODO: BaseResponse 是必须要的
+message BaseResponse{
+    bool success = 1;
+    Error error = 2;
+}
+
+message QueryUserByNameReq{
+    uint64 userID =1;
+}
+
+message QueryUserByNameRsp{
+    BaseResponse baseResponse = 1;
+    string userName = 2;
+}
+
+message UserBaseInfo {
+    string userName =1;
+}
